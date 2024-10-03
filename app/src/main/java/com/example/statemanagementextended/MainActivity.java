@@ -1,42 +1,84 @@
 package com.example.statemanagementextended;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.TextView;
-import androidx.activity.EdgeToEdge;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.security.Key;
-
 public class MainActivity extends AppCompatActivity {
+    /*
+    private static final String KEY_COUNT = "count";
+    private static final String KEY_TEXT = "text";
+    private static final String KEY_CheckBox = "checkState";
+    private static final String KEY_Switcher = "switchState";
+    */
 
-    //private static final String KEY_COUNT = "count";
     private CountViewModel countViewModel;
+
+    private LinearLayout main;
+
     private TextView textViewCount;
-    //private int count =0;
+    private Button increaseBtn;
+
+    private EditText inputText;
+
+    private CheckBox checkBox;
+    private TextView hideMsg;
+
+    private Switch switcher;
+
+    /*
+    private int count = 0;
+    private String text = "";
+    private boolean switcherT = false;
+    private boolean checkBoxT = false;
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        main = findViewById(R.id.main);
 
         textViewCount = findViewById(R.id.textViewCount);
-        Button increaseBtn = findViewById(R.id.increaseBtn);
-        CheckBox checkBox = findViewById(R.id.checkBox);
+        increaseBtn = findViewById(R.id.increaseBtn);
 
-        /*if(savedInstanceState != null){
+        inputText = findViewById(R.id.inputText);
+
+        switcher = findViewById(R.id.switcher);
+        checkBox = findViewById(R.id.checkBox);
+        hideMsg = findViewById(R.id.hideMsg);
+
+        /*
+        if(savedInstanceState != null){
             count = savedInstanceState.getInt(KEY_COUNT);
-        }*/
+            text = savedInstanceState.getString(KEY_TEXT);
+            checkBoxT = savedInstanceState.getBoolean(KEY_CheckBox);
+            switcherT = savedInstanceState.getBoolean(KEY_Switcher);
+            if(checkBoxT){
+                hideMsg.setVisibility(View.VISIBLE);
+            } else {
+                hideMsg.setVisibility(View.INVISIBLE);
+            }
+            if(switcherT){
+                main.setBackgroundColor(Color.BLACK);
+            } else {
+                main.setBackgroundColor(Color.WHITE);
+            }
+        }
+        */
+
+
         countViewModel = new ViewModelProvider(this).get(CountViewModel.class);
+        countViewModel.setTextInp(inputText.toString());
+        updateText();
         updateCountText();
+        updateCheckBox();
+        updateSwitcher();
 
         increaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
@@ -46,25 +88,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        checkBox.setOnClickListener(new View.OnClickListener() {
+        switcher.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                if(checkBox.isChecked()){
-
+                if(switcher.isChecked()){
+                    main.setBackgroundColor(Color.BLACK);
+                    //switcherT = true;
                 } else {
-
+                    main.setBackgroundColor(Color.WHITE);
+                    //switcherT = false;
                 }
             }
         });
 
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                if(checkBox.isChecked()){
+                    hideMsg.setVisibility(View.VISIBLE);
+                    //checkBoxT = true;
+                } else {
+                    hideMsg.setVisibility(View.INVISIBLE);
+                    //checkBoxT = false;
+                }
+            }
+        });
     }
 
-    /*@Override
+    /*
+    @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_COUNT, count);
-    }*/
+        outState.putString(KEY_TEXT, inputText.toString());
+        outState.putBoolean(KEY_Switcher, switcherT);
+        outState.putBoolean(KEY_CheckBox, checkBoxT);
+    }
+    */
+
     private void updateCountText(){
+        //textViewCount.setText("Licznik: "+ count);
         textViewCount.setText("Licznik: "+ countViewModel.getCount());
     }
+    private void updateText(){
+        //inputText.setText(text);
+    }
+    private void updateSwitcher(){
+        //switcher.setChecked(switcherT);
+        /*if(switcherT){
+                main.setBackgroundColor(Color.BLACK);
+        } else {
+            main.setBackgroundColor(Color.WHITE);
+        }*/
+    }
+    private void updateCheckBox(){
+        //checkBox.setChecked(checkBoxT);
+        /*if(checkBoxT){
+            hideMsg.setVisibility(View.VISIBLE);
+        } else {
+            hideMsg.setVisibility(View.INVISIBLE);
+        }*/
+    }
 }
+// QUESTION - should I set initializing of update function in another place
+// po co w ogole update - czy te if powinny byc w nim

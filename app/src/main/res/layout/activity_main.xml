@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity"
-        android:layout_margin="20dp">
+        android:padding="20dp">
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+    >
         <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,18 +60,19 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-    <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox"
-            android:minWidth="47dp"/>
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/hideMsg"
-            android:text="Opcja jest zaznaczona"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox"
+                android:minWidth="47dp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/hideMsg"
+                android:text="Opcja jest zaznaczona"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                android:layout_gravity="center"/>
     </LinearLayout>
 
 </LinearLayout>
