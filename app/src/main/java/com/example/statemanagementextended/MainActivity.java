@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_COUNT, count);
-        outState.putString(KEY_TEXT, inputText.toString());
+        outState.putString(KEY_TEXT, inputText.getText().toString());
         outState.putBoolean(KEY_Switcher, switcherT);
         outState.putBoolean(KEY_CheckBox, checkBoxT);
     }
