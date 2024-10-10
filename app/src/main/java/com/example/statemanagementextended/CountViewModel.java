@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 public class CountViewModel extends ViewModel {
     private int count = 0;
-    private String textInp;
+    private String textInp = "";
     private boolean switcherT = false;
     private boolean checkBoxT = false;
 

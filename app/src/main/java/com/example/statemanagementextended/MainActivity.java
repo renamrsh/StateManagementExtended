@@ -72,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
         }
         */
 
-
+        //
         countViewModel = new ViewModelProvider(this).get(CountViewModel.class);
-        countViewModel.setTextInp(inputText.toString());
+        countViewModel.setTextInp(inputText.getText().toString());
+        //
+
         updateText();
         updateCountText();
         updateCheckBox();
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         increaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 //count++;
+                //
                 countViewModel.incrementCount();
                 updateCountText();
             }
@@ -92,9 +95,13 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onClick(View view) {
                 if(switcher.isChecked()){
                     main.setBackgroundColor(Color.BLACK);
+                    //
+                    countViewModel.setSwitcherT(true);
                     //switcherT = true;
                 } else {
                     main.setBackgroundColor(Color.WHITE);
+                    //
+                    countViewModel.setSwitcherT(false);
                     //switcherT = false;
                 }
             }
@@ -104,9 +111,13 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onClick(View view) {
                 if(checkBox.isChecked()){
                     hideMsg.setVisibility(View.VISIBLE);
+                    //
+                    countViewModel.setCheckBoxT(true);
                     //checkBoxT = true;
                 } else {
                     hideMsg.setVisibility(View.INVISIBLE);
+                    //
+                    countViewModel.setCheckBoxT(false);
                     //checkBoxT = false;
                 }
             }
@@ -130,23 +141,36 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateText(){
         //inputText.setText(text);
+        inputText.setText(countViewModel.getTextInp());
     }
     private void updateSwitcher(){
-        //switcher.setChecked(switcherT);
-        /*if(switcherT){
+        /*switcher.setChecked(switcherT);
+        if(switcherT){
                 main.setBackgroundColor(Color.BLACK);
         } else {
             main.setBackgroundColor(Color.WHITE);
         }*/
+
+        switcher.setChecked(countViewModel.isSwitcherT());
+        if(countViewModel.isSwitcherT()){
+            main.setBackgroundColor(Color.BLACK);
+        } else {
+            main.setBackgroundColor(Color.WHITE);
+        }
     }
     private void updateCheckBox(){
-        //checkBox.setChecked(checkBoxT);
-        /*if(checkBoxT){
+        /*checkBox.setChecked(checkBoxT);
+        if(checkBoxT){
             hideMsg.setVisibility(View.VISIBLE);
         } else {
             hideMsg.setVisibility(View.INVISIBLE);
         }*/
+
+        checkBox.setChecked(countViewModel.isCheckBoxT());
+        if(countViewModel.isCheckBoxT()){
+            hideMsg.setVisibility(View.VISIBLE);
+        } else {
+            hideMsg.setVisibility(View.INVISIBLE);
+        }
     }
 }
-// QUESTION - should I set initializing of update function in another place
-// po co w ogole update - czy te if powinny byc w nim
