@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button increaseBtn;
 
     private EditText inputText;
+    private TextView testmsg;
 
     private CheckBox checkBox;
     private TextView hideMsg;
@@ -48,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
         increaseBtn = findViewById(R.id.increaseBtn);
 
         inputText = findViewById(R.id.inputText);
+        testmsg = findViewById(R.id.testmsg);
 
         switcher = findViewById(R.id.switcher);
         checkBox = findViewById(R.id.checkBox);
         hideMsg = findViewById(R.id.hideMsg);
+
 
         /*
         if(savedInstanceState != null){
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_COUNT, count);
-        outState.putString(KEY_TEXT, inputText.toString());
+        outState.putString(KEY_TEXT, inputText.getText().toString());
         outState.putBoolean(KEY_Switcher, switcherT);
         outState.putBoolean(KEY_CheckBox, checkBoxT);
     }
@@ -141,7 +144,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateText(){
         //inputText.setText(text);
+        //testmsg.setText(text);
+
         inputText.setText(countViewModel.getTextInp());
+        testmsg.setText(countViewModel.getTextInp());
     }
     private void updateSwitcher(){
         /*switcher.setChecked(switcherT);

@@ -37,6 +37,15 @@
             android:hint="Wpisz tekst"
             android:layout_marginBottom="10dp"/>
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/testmsg"
+            android:text=""
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:visibility="visible"/>
+
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -74,5 +83,6 @@
                 android:visibility="invisible"
                 android:layout_gravity="center"/>
     </LinearLayout>
+
 
 </LinearLayout>
